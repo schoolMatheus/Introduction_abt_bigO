@@ -75,8 +75,12 @@ public class ListaEncadeada<T> {
         System.out.println(sb.toString());
     }
 
-    //Novos Métodos Atividade01
+    // Novos Métodos Atividade01
 
+    /**
+     * Complexidade: O(1), pois a operação envolve apenas a atualização do 'inicio' para o próximo nó,
+     * independentemente do tamanho da lista. Não há necessidade de percorrer a lista.
+     */
     public void removerDoInicio(){
         if(this.inicio == null){
             System.out.println("Lista vazia");
@@ -85,6 +89,10 @@ public class ListaEncadeada<T> {
         this.inicio = this.inicio.proximo;
     }
 
+    /**
+     * Complexidade: O(n), onde n é o número de nós na lista, pois pode ser necessário
+     * percorrer toda a lista para alcançar o índice pedido.
+    */
     public T obterEm(int indice){
         if (indice < 0){
             throw new IndexOutOfBoundsException("Índice inválido: " + indice);
@@ -104,6 +112,10 @@ public class ListaEncadeada<T> {
         return noExterno.dado;
     }
 
+    /**
+     * Complexidade: O(n), onde n é o número de nós na lista, pois pode ser necessário
+     * percorrer toda a lista para encontrar o valor ou dizer que ele não está.
+     */
     public void removerValor(T dado){
         if(this.inicio.dado.equals(dado)){
             this.inicio = this.inicio.proximo;
@@ -121,6 +133,10 @@ public class ListaEncadeada<T> {
         }
     }
 
+    /**
+     * Complexidade: O(n), onde n é o número de nós na lista, pois pode ser necessário
+     * percorrer toda a lista para encontrar o último nó.
+     */
     public void inserirNoFim(T dado){
         No<T> novoNo = new No<>(dado);
         if(this.inicio == null){
@@ -135,6 +151,10 @@ public class ListaEncadeada<T> {
         noExterno.proximo = novoNo;
     }
 
+    /**
+     * Complexidade: O(n), onde n é o número de nós na lista, pois o método percorre toda a lista,
+     * contando cada nó até chegar no final.
+     */
     public int tamanho(){
         int tamanho = 0;
         No<T> noExterno = this.inicio;
