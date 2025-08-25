@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /*
+
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
 
@@ -48,5 +50,46 @@ public class Main {
         System.out.println("e observe como o tempo de execução aumenta de forma não linear");
         scanner.close();
 
+         */
+
+        System.out.println("--- Atividade Complementar: Testes dos Novos Métodos ---");
+        ListaEncadeada<String> agenda = new ListaEncadeada<>();
+
+        // Testando inserções
+        agenda.inserirNoInicio("Marcar reunião"); // Início
+        agenda.inserirNoFim("Preparar apresentação"); // Fim
+        agenda.inserirNoInicio("Revisar e-mails"); // Novo início
+        agenda.inserirNoFim("Enviar relatório"); // Novo fim
+        System.out.print("Estado da lista: ");
+        agenda.exibir(); // Esperado: Revisar e-mails -> Marcar reunião -> Preparar apresentação -> Enviar relatório -> null
+
+        System.out.println("Tamanho atual (O(1)): " + agenda.tamanho()); // Esperado: 4
+
+        // Testando obtenção por índice (O(n))
+        System.out.println("\n--- Testando obterEm(indice) ---");
+        try {
+            System.out.println("Elemento no índice 0: " + agenda.obterEm(0)); // Esperado: Revisar e-mails
+            System.out.println("Elemento no índice 2: " + agenda.obterEm(2)); // Esperado: Preparar apresentação
+            System.out.println("Elemento no último índice (3): " + agenda.obterEm(agenda.tamanho() - 1)); // Esperado: Enviar relatório
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+
+        // Testando remoções (O(1) e O(n))
+        System.out.println("\n--- Testando Remoções ---");
+        agenda.removerDoInicio(); // Remove "Revisar e-mails"
+        System.out.print("Após remover do início: ");
+        agenda.exibir(); // Esperado: Marcar reunião -> Preparar apresentação -> Enviar relatório -> null
+        System.out.println("Tamanho: " + agenda.tamanho()); // Esperado: 3
+
+        agenda.removerValor("Preparar apresentação"); // Remove um elemento do meio
+        System.out.print("Após remover 'Preparar apresentação': ");
+        agenda.exibir(); // Esperado: Marcar reunião -> Enviar relatório -> null
+        System.out.println("Tamanho: " + agenda.tamanho()); // Esperado: 2
+
+        agenda.removerValor("Enviar relatório"); // Remove o último elemento
+        System.out.print("Após remover o último elemento: ");
+        agenda.exibir(); // Esperado: Marcar reunião -> null
+        System.out.println("Tamanho: " + agenda.tamanho()); // Esperado: 1
     }
 }
