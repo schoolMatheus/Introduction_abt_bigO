@@ -144,10 +144,4 @@ public class ListaEncadeada<T> {
         }
         return tamanho;
     }
-
-
-
-
-
-
 }
