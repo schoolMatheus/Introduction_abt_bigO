@@ -98,12 +98,12 @@ public class ListaEncadeada<T> {
             throw new IndexOutOfBoundsException("Índice inválido: " + indice);
         }
 
-        int tamanho = 0;
+        int posicao = 0;
         No<T> noExterno = this.inicio;
 
-        while (noExterno != null && tamanho < indice) {
+        while (noExterno != null && posicao < indice) {
             noExterno = noExterno.proximo;
-            tamanho++;
+            posicao++;
         }
         if (noExterno == null){
             throw new IndexOutOfBoundsException("Índice maio que a lista: " + indice);
@@ -164,4 +164,6 @@ public class ListaEncadeada<T> {
         }
         return tamanho;
     }
+
+
 }
