@@ -1,48 +1,20 @@
-import model.ListTester;
-import model.ListaEncadeada;
-import java.util.*;
+import model.FilaDePrioridade;
+import model.Paciente;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // ... (código do menu para escolher entre 1-ArrayList, 2-LinkedList, 3-Vector, 4-Stack) ...
-        System.out.print("### Escolha o tipo de Lista ###\n");
-        System.out.print("1-ArrayList, 2-LinkedList, 3-Vector, 4-Stack: ");
-        int op = sc.nextInt();
 
-        while (op > 4 || op < 1) {
-            System.out.print("### Escolha uma opção válida ###\n");
-            System.out.print("1-ArrayList, 2-LinkedList, 3-Vector, 4-Stack: ");
-            op = sc.nextInt();
+        // Cenário de Teste 1: Triagem de Pacientes (Usando Comparable)
+        FilaDePrioridade<Paciente> filaAtendimento = new FilaDePrioridade<>();
+        System.out.println("Cenário 1: Atendimento de Pacientes (Implementação com Lista)");
+        filaAtendimento.enfileirar(new Paciente("Carlos", 3));
+        filaAtendimento.enfileirar(new Paciente("Maria", 5));
+        filaAtendimento.enfileirar(new Paciente("Ana", 8));
+        filaAtendimento.enfileirar(new Paciente("Sofia", 10));
+
+        System.out.println("Próximo paciente: " + filaAtendimento.espiar());
+        while (!filaAtendimento.estaVazia()) {
+            System.out.println("Atendendo: " + filaAtendimento.desenfileirar());
         }
-
-        List<Integer> listaEscolhida = null;
-        String nomeDaLista = "";
-
-        // ... (switch case para instanciar a lista escolhida) ...
-        switch (op){
-            case 1:
-                listaEscolhida = new ArrayList<>();
-                nomeDaLista = "ArrayList";
-                break;
-            case 2:
-                listaEscolhida = new LinkedList<>();
-                nomeDaLista = "LinkedList";
-                break;
-            case 3:
-                listaEscolhida = new Vector<>();
-                nomeDaLista = "Vector";
-                break;
-            default:
-                listaEscolhida = new Stack<>();
-                nomeDaLista = "Stack";
-        }
-
-        System.out.println("\n--- Iniciando testes com " + nomeDaLista + " ---");
-        ListTester.runAllTests(listaEscolhida);
-        System.out.println("--- Testes finalizados ---");
-
-        sc.close();
-
     }
 }
