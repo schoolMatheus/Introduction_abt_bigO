@@ -1,20 +1,30 @@
-import model.FilaDePrioridade;
-import model.Paciente;
+import model.RPNCalculadora;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        // Cenário de Teste 1: Triagem de Pacientes (Usando Comparable)
-        FilaDePrioridade<Paciente> filaAtendimento = new FilaDePrioridade<>();
-        System.out.println("Cenário 1: Atendimento de Pacientes (Implementação com Lista)");
-        filaAtendimento.enfileirar(new Paciente("Carlos", 3));
-        filaAtendimento.enfileirar(new Paciente("Maria", 5));
-        filaAtendimento.enfileirar(new Paciente("Ana", 8));
-        filaAtendimento.enfileirar(new Paciente("Sofia", 10));
+        RPNCalculadora calculadora = new RPNCalculadora();
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Próximo paciente: " + filaAtendimento.espiar());
-        while (!filaAtendimento.estaVazia()) {
-            System.out.println("Atendendo: " + filaAtendimento.desenfileirar());
+        System.out.println("Digite a expressão RPN ('5 1 2 + 4 * +') ou 'sair' para encerrar:");
+
+        while (true) {
+            String input = scanner.nextLine().trim();
+            if (input.equalsIgnoreCase("sair")) {
+                break;
+            }
+
+            try {
+                double resultado = calculadora.evaluateRPN(input);
+                System.out.println("Resultado: " + resultado);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+
+            System.out.println("Digite outra expressão RPN ou 'sair' para encerrar:");
         }
+
+        scanner.close();
     }
 }
